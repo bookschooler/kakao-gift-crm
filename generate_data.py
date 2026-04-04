@@ -71,9 +71,13 @@ def get_seasonal_multiplier(d: date) -> float:
 
     # ── 11월: 빼빼로데이(#1) + 수능 + 블랙프라이데이 ──────────────────
     # 빼빼로데이: 카카오 공식 연중 최고 거래일. 건수 폭발적
-    if m == 11 and day == 11:     return 12.0
-    if m == 11 and 9 <= day <= 10:  return 5.0   # D-2~D-1
-    if m == 11 and 12 <= day <= 13: return 5.0   # D+1~D+2 (여파)
+    # D-7~D-4: 사전 구매 준비 (×2.5), D-3~D-1: 피크 직전 (×5.0)
+    # D-day: ×12.0, D+1~D+2: 여파 (×5.0), D+3~D+4: 잔여 (×2.5)
+    if m == 11 and day == 11:           return 12.0  # 당일
+    if m == 11 and 8 <= day <= 10:      return 5.0   # D-3~D-1
+    if m == 11 and 12 <= day <= 13:     return 5.0   # D+1~D+2
+    if m == 11 and 4 <= day <= 7:       return 2.5   # D-7~D-4
+    if m == 11 and 14 <= day <= 15:     return 2.5   # D+3~D+4
     # 수능 전날: 카카오 공식 #5. 일평균 +260% (매일경제 2021)
     if m == 11 and 14 <= day <= 15: return 2.5
     # 블랙프라이데이: 11월 넷째 주 금요일 주변 (22~29일)
@@ -90,9 +94,9 @@ def get_seasonal_multiplier(d: date) -> float:
     if m == 5 and 13 <= day <= 14:   return 1.8
 
     # ── 설날: 쿠팡 로켓프레시 전전주比 +258% (쿠팡Ads 2025) ──────────
-    # 설날 당일·전후 3일만 고부스트, 선물 준비 기간(D-14~D-4)은 중간 부스트
+    # 준비기간 D-14→D-7로 단축 (주문건수 누적 억제)
     if (m == 1 and 28 <= day <= 31) or (m == 2 and day <= 3):  return 4.0   # 당일±3일
-    if (m == 1 and 18 <= day <= 27) or (m == 2 and 4 <= day <= 12): return 2.0  # 준비 기간
+    if (m == 1 and 21 <= day <= 27) or (m == 2 and 4 <= day <= 7): return 2.0  # 준비 기간 (D-7~D-4)
 
     # ── 발렌타인데이: 카카오 공식 #2 ─────────────────────────────────
     if m == 2 and day == 14:         return 4.0
@@ -105,8 +109,9 @@ def get_seasonal_multiplier(d: date) -> float:
     if m == 3 and 15 <= day <= 16:   return 1.4
 
     # ── 추석: 쿠팡/컬리 전주比 +238~258% (약 3.4~3.6배) ─────────────
+    # 준비기간 D-14→D-7로 단축 (주문건수 누적 억제)
     if (m == 9 and 27 <= day <= 30) or (m == 10 and day <= 3):  return 4.0   # 당일±3일
-    if (m == 9 and 22 <= day <= 26) or (m == 10 and 4 <= day <= 10): return 2.0  # 준비 기간
+    if (m == 9 and 23 <= day <= 26) or (m == 10 and 4 <= day <= 7): return 2.0  # 준비 기간 (D-7~D-4)
 
     # ── 크리스마스: 12월 화장품 이커머스 전년比 +28% (데이터라이즈 2025) ─
     if m == 12 and day == 25:        return 3.0
@@ -121,7 +126,7 @@ def get_seasonal_multiplier(d: date) -> float:
 def get_season_occasion(d: date):
     """날짜 → (occasion_category, occasion_subcategory, gift_occasion) 또는 None"""
     m, day = d.month, d.day
-    if m == 11 and 9 <= day <= 13:
+    if m == 11 and 4 <= day <= 15:
         return ('special', 'seasonal', 'pepero_day')
     if m == 11 and 14 <= day <= 15:
         return ('special', 'seasonal', 'suneung')
