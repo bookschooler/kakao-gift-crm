@@ -295,11 +295,27 @@ ROAS = (Sends × CTR × CVR × AOV) / Cost
 
 ---
 
+
+
+## 프로젝트 인사이트 (Reporter Stage)
+
+**파일**: `projects/reporter_insights.md`
+
+**주요 내용**:
+- 전체 분석 핵심 수치 one-page 요약 (재사용 참조용)
+- 선물하기 CRM 분석 5대 교훈 프레임워크
+- Reporter Stage 산출물 파일 경로 목록
+- Blameless Post-mortem (병목 분석 + 개선 규칙)
+
+**사용 시기**: 다음 유사 프로젝트 착수 시 벤치마크 참조
+
+---
 ## 파일 업데이트 이력
 
 | 날짜 | 파일 | 변경사항 |
 |---|---|---|
 | 2026-04-04 | 전체 | Researcher Stage 1차 완성 |
+| 2026-04-04 | projects/reporter_insights.md | Reporter Stage 완성 — PPTX/MD 보고서 생성 |
 | (예정) | 각 methodologies | Sophie 구현 피드백 반영 |
 | (예정) | REFERENCES | 추가 논문 링크 |
 

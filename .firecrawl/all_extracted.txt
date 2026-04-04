@@ -1,0 +1,592 @@
+===== brunch (15237 chars) =====
+메뉴 [brunch](https://brunch.co.kr/)
+
+더보기
+
+공유댓글라이킷20응원하기
+
+# 받는 경험에서 시작하는 '카카오톡 선물하기' 분석
+
+서비스 / UI∙UX 분석 노트 05
+
+by[오브](https://brunch.co.kr/@bydot)
+
+Nov 25. 2024
+
+* * *
+
+### **서비스 소개**
+
+**마음을 전하는 가장 쉬운 방법, 카카오톡 선물하기**
+
+> \- 출시일 : 2010.12.23
+>
+> \- 제공자 : 카카오(커머스 CIC)
+>
+> \- 카테고리 : 모바일/온라인 커머스
+>
+> \- 이용자수 :
+>
+>  • 국내 선물하기 시장 규모 5조 원 중 카카오톡 선물하기 3조 3,000억 원 차지 → 시장 점유율 70% 이상(22년 기준)
+>
+>  • MAU 2,600만 명(24.10 기준)
+>
+> \- 홈페이지 : [https://gift.kakao.com/home](https://gift.kakao.com/home)
+
+* * *
+
+### **산업 분석**
+
+**1\. 시장 규모**
+
+> 코로나19 이후로 꾸준히 성장하는 비대면 선물하기 시장
+
+• 통계청 온라인 쇼핑 동향 통계
+
+\- 2023년 온라인 e쿠폰 서비스 거래액 9조 8,820억 원으로 집계, 2024년 10조 원을 넘길 것으로 전망
+
+\- 2019년 3조 3,800억 원 → 2020년 4조 3,990억 원 → 2021년 6조 997억 원 → 2022년 7조 3259억 원으로 **매년 20% 이상 꾸준히 성장 중**
+
+**2\. 산업 현황**
+
+> 모바일 선물하기의 일상화
+
+• e-쿠폰(모바일쿠폰) 서비스 및 모바일 선물하기 관련 조사(전국 만 19~59세 성인 남녀 1000명)' 전체 응답자 중 87.8%가 '생일이나 기념일 등에 모바일 선물하기를 이용하는 것이 일상화된 것 같다' 평가(출처: 엠브레인 트렌드모니터)
+
+• ‘코로나19 이후 해당 기능으로 선물을 주고받는 경우가 많아졌다’ 응답 87.9% → 비대면 소비문화의 확산으로 인해 모바일 선물하기 기능 보편화
+
+• 이커머스 시장 성숙기로 인해 시장 성장세 감소, 다수 이커머스 플랫폼 적자 → 선물하기 시장은 새로운 매출 창출 영역, **경기가 어려워도 축하, 기념, 조의 등 선물의 필요성은 사라지기 않기 때문에 선물하기 커머스 사업은 꾸준히 성장**
+
+> 선물하기 서비스 진화 과정
+
+**기프티콘기 → 택배 도입기 → 객단가 성장기**
+
+• **기프티콘기** : 기프티콘 선물을 주력, 선물을 받은 사람이 직접 오프라인 매장에 방문해 상품을 교환하는 방식
+
+\> 주력 상품 \- 프랜차이즈 식음료
+
+• **택배 도입기** : 선물을 받는 사람이 본인의 주소를 입력해 택배 기반의 선물 배송 → 선물하기 서비스로 판매할 수 있는 상품 범위 이커머스 상품 전체로 확대
+
+\> 주력 상품 \- 일반 공산품, 과일, 육류, 어류 등 식재료
+
+• **객단가 성장기** : 스몰 럭셔리, 명품 선물 등 높은 객단가의 상품 판매
+
+\> 주력 상품 \- 10만 원 이하의 명품 뷰티 상품, 주얼리, 가방
+
+> 시장 경쟁력 확보 요소
+
+**•**플랫폼 내 선물하기 탭 운영
+
+**•**선물 품목의 다양화
+
+**•**선물 과정의 편의성 강화
+
+> 경쟁사 선물하기 서비스
+
+**•**쿠팡
+
+카카오톡**∙**문자로 선물 보내기 / 로켓 선물하기(빠른 배송) / 뷰티 브랜드 전용관 ‘로켓럭셔리’ 운영
+
+**•**SSG닷컴
+
+대상별, 상황별, 금액대별 맞춤 선물 추천 강화 / 선물 포장 가능한 상품 모아보기 기능 / 신세계백화점 선물하기 전문관 '신백선물관' 특별 페이지 개설
+
+**•**11번가
+
+해외직구 상품 / 핸드메이드, 미식상회, 플라워숍, 스몰럭셔리 등 다양한 선물하기 전문관 운영
+
+**•**네이버
+
+도착 보장 배송 적용 / 인공지능 AI 기반 선물 추천 서비스 ‘똑똑 선물샵’ 운영
+
+* * *
+
+### **비즈니스 모델 캔버스**
+
+![image.png](https://img1.daumcdn.net/thumb/R1280x0.fpng/?fname=http://t1.daumcdn.net/brunch/service/user/bCNP/image/RXnOn8w7j0pWm_r4ZZF-k9gaagk.png)카카오톡 선물하기 서비스 연혁 (출처: 카카오)
+
+**• 고객**
+
+◦ 선물을 하는 사람
+
+◦ 선물을 받는 사람 → **모바일 선물을 받아보는 경험을 통해 효용성, 편의성, 감정적 교류 체험, 새 구매 고객으로 전환**
+
+\- 데이터 분석 결과, 선물하기 경험이 없는 고객 4번가량 선물을 받았을 경우 30% 이상이 구매 고객으로 전환. 신규 구매 고객의 70% 이상이 받는 경험에서 출발.
+
+⇒ 가시적인 마케팅보다 **카카오톡 이용자에게 선물할 계기를 알리는 데 주력, 서비스 경험자들의 네트워크 효과 활용**
+
+**• 가치제안**
+
+◦ 타인을 위한 구매, 커머스를 상대방에게 마음을 전달하는 행위로 정의
+
+◦ 일상 메세지로서의 선물, 커뮤니케이션의 역할
+
+\- 카카오톡 친구 탭 ‘생일인 친구’ 기능을 통해 고객층 확대(2030 남성, 50대)
+
+\- 선물에 동봉되는 메시지 카드로 마음 표현
+
+◦ 고객이 선물하고 싶을 만한 상품을 엄선해 입점 → 입점사 카카오톡 선물하기 전용 PB 상품 라인업
+
+⇒ **지인과 연결감을 느끼며 소통하고 관계를 유지, 이타적이고 관계지향적인 소비 강조**
+
+메신저를 대신한 관계 유지의 기능 수행
+
+**• 채널, 핵심자원**
+
+◦ 모바일 카카오톡
+
+◦ PC버전 카카오톡
+
+⇒ 높은 편의성과 접근성, 타 앱 대비 높은 리텐션율 유지
+
+**• 고객관계**
+
+◦ 메시지 카드
+
+◦ 생일인 친구
+
+◦ 위시리스트
+
+⇒ 사용자의 관계 중심의 감성적 서비스 개발
+
+**• 수익원**
+
+![image (2).png](https://img1.daumcdn.net/thumb/R1280x0.fpng/?fname=http://t1.daumcdn.net/brunch/service/user/bCNP/image/wx7HnOWcxF7eGGeyUinu8JQKI7M.png)
+
+![image (3).png](https://img1.daumcdn.net/thumb/R128
+
+===== koreatimes (15513 chars) =====
+menu
+
+[**South Korea**](https://www.koreatimes.co.kr/southkorea)
+
+- [Politics](https://www.koreatimes.co.kr/southkorea/politics)
+- [Defense](https://www.koreatimes.co.kr/southkorea/defense)
+- [Global Community](https://www.koreatimes.co.kr/southkorea/globalcommunity)
+- [Environment & Animals](https://www.koreatimes.co.kr/southkorea/environment-animals)
+- [Law & Crime](https://www.koreatimes.co.kr/southkorea/law-crime)
+- [Health](https://www.koreatimes.co.kr/southkorea/health)
+- [Society](https://www.koreatimes.co.kr/southkorea/society)
+- [Others](https://www.koreatimes.co.kr/southkorea/others)
+- [K-universities](https://www.koreatimes.co.kr/collections/k-universities)
+- [University Rankings](https://www.koreatimes.co.kr/collections/university-rankings)
+
+[**Foreign Affairs**](https://www.koreatimes.co.kr/foreignaffairs)
+
+- [North Korea](https://www.koreatimes.co.kr/foreignaffairs/northkorea)
+- [Others](https://www.koreatimes.co.kr/foreignaffairs/others)
+
+[**Business**](https://www.koreatimes.co.kr/business)
+
+- [Tech & Science](https://www.koreatimes.co.kr/business/tech-science)
+- [Companies](https://www.koreatimes.co.kr/business/companies)
+- [Banking & Finance](https://www.koreatimes.co.kr/business/banking-finance)
+- [Most respected CEOs](https://www.koreatimes.co.kr/collections/mostrespectedceos)
+- [Others](https://www.koreatimes.co.kr/business/others)
+
+[**Economy**](https://www.koreatimes.co.kr/economy)
+
+- [Policy](https://www.koreatimes.co.kr/economy/policy)
+- [Cryptocurrency](https://www.koreatimes.co.kr/economy/cryptocurrency)
+- [Others](https://www.koreatimes.co.kr/economy/others)
+
+[**Opinion**](https://www.koreatimes.co.kr/opinion)
+
+- [Editorial](https://www.koreatimes.co.kr/opinion/editorial)
+- [Columns](https://www.koreatimes.co.kr/collections/columns)
+- [Cartoons](https://www.koreatimes.co.kr/collections/cartoons)
+- [Today in History](https://www.koreatimes.co.kr/opinion/todayinhistory)
+- [Voice of Readers](https://www.koreatimes.co.kr/collections/voiceofreaders)
+- [Blogs](https://www.koreatimes.co.kr/collections/blogs)
+
+[**Lifestyle**](https://www.koreatimes.co.kr/lifestyle)
+
+- [Travel & Food](https://www.koreatimes.co.kr/lifestyle/travel-food)
+- [Arts & Theater](https://www.koreatimes.co.kr/lifestyle/arts-theater)
+- [Books](https://www.koreatimes.co.kr/lifestyle/books)
+- [Korean Heritage](https://www.koreatimes.co.kr/lifestyle/koreanheritage)
+- [Trends](https://www.koreatimes.co.kr/lifestyle/trends)
+- [People & Events](https://www.koreatimes.co.kr/lifestyle/people-events)
+- [Others](https://www.koreatimes.co.kr/lifestyle/others)
+
+[**Entertainment**](https://www.koreatimes.co.kr/entertainment)
+
+- [K-pop](https://www.koreatimes.co.kr/entertainment/k-pop)
+- [Shows & Dramas](https://www.koreatimes.co.kr/entertainment/shows-dramas)
+- [Films](https://www.koreatimes.co.kr/entertainment/films)
+- [Music](https://www.koreatimes.co.kr/entertainment/music)
+- [Others](https://www.koreatimes.co.kr/entertainment/others)
+
+[**Sports**](https://www.kore
+
+===== koreaherald (15838 chars) =====
+[The Korea Herald](https://www.koreaherald.com/ "The Korea Herald")
+
+- [Print edition](https://www.koreaherald.com/Subscribe)
+
+[Business](https://www.koreaherald.com/Business)
+
+- [Industry](https://www.koreaherald.com/Business/Industry)
+- [Technology](https://www.koreaherald.com/Business/Technology)
+- [Mobility](https://www.koreaherald.com/Business/Mobility)
+- [Consumer](https://www.koreaherald.com/Business/Consumer)
+- [Economy](https://www.koreaherald.com/Business/Economy)
+- [Market](https://www.koreaherald.com/Business/Market)
+
+_Business KakaoTalk gifting service used nearly 200 mln times this year_
+
+[My Page](https://www.koreaherald.com/mypage)
+
+- [For our subscribers](https://www.koreaherald.com/series)
+
+- [National](https://www.koreaherald.com/article/10643640#none)  - [All](https://www.koreaherald.com/National)
+  - [Politics](https://www.koreaherald.com/National/Politics)
+  - [Seoul](https://www.koreaherald.com/National/Seoul)
+  - [Education](https://www.koreaherald.com/National/Education)
+  - [Social Affairs](https://www.koreaherald.com/National/SocialAffairs)
+  - [Courts and Law](https://www.koreaherald.com/National/CourtsandLaw)
+  - [Foreign Affairs](https://www.koreaherald.com/National/ForeignAffairs)
+  - [Military](https://www.koreaherald.com/National/Military)
+  - [North Korea](https://www.koreaherald.com/National/NorthKorea)
+  - [Diplomatic Circuit](https://www.koreaherald.com/National/DiplomaticCircuit)
+  - [Health](https://www.koreaherald.com/National/Health)
+- [Business](https://www.koreaherald.com/article/10643640#none)  - [All](https://www.koreaherald.com/Business)
+  - [Industry](https://www.koreaherald.com/Business/Industry)
+  - [Technology](https://www.koreaherald.com/Business/Technology)
+  - [Mobility](https://www.koreaherald.com/Business/Mobility)
+  - [Consumer](https://www.koreaherald.com/Business/Consumer)
+  - [Economy](https://www.koreaherald.com/Business/Economy)
+  - [Market](https://www.koreaherald.com/Business/Market)
+- [Life&Culture](https://www.koreaherald.com/article/10643640#none)  - [All](https://www.koreaherald.com/LifenCulture)
+  - [Culture](https://www.koreaherald.com/LifenCulture/Culture)
+  - [Travel](https://www.koreaherald.com/LifenCulture/Travel)
+  - [Food](https://www.koreaherald.com/LifenCulture/Food)
+  - [Books](https://www.koreaherald.com/LifenCulture/Books)
+  - [People](https://www.koreaherald.com/LifenCulture/People)
+  - [Film](https://www.koreaherald.com/LifenCulture/Film)
+  - [Television](https://www.koreaherald.com/LifenCulture/Television)
+  - [Performance](https://www.koreaherald.com/LifenCulture/Performance)
+- [Sports](https://www.koreaherald.com/article/10643640#none)  - [All](https://www.koreaherald.com/Sports)
+  - [Soccer](https://www.koreaherald.com/Sports/Soccer)
+  - [Baseball](https://www.koreaherald.com/Sports/Baseball)
+  - [Golf](https://www.koreaherald.com/Sports/Golf)
+  - [More Sports](https://www.koreaherald.com/Sports/MoreSports)
+- [World](https://www.koreaherald.com/article/10643640#
+
+===== chosun (21481 chars) =====
+2026년 4월 3일(금)
+
+[조선일보 로고](https://www.chosun.com/)
+
+[신문구독](https://members.chosun.com/membership/subscribe_paper/) \| [English](https://www.chosun.com/english/) \| [日本語](http://www.chosunonline.com/) \| [中文](https://cnnews.chosun.com/)
+
+[로그인](https://www.chosun.com/subscribe/signin/)
+
+0
+
+[조선경제](https://www.chosun.com/economy/)
+
+[오피니언](https://www.chosun.com/opinion/)
+
+[정치](https://www.chosun.com/politics/)
+
+[사회](https://www.chosun.com/national/)
+
+[국제](https://www.chosun.com/international/)
+
+[건강](https://www.chosun.com/medical/)
+
+[스포츠](https://www.chosun.com/sports/)
+
+[문화·연예](https://www.chosun.com/culture-style/)
+
+콘텐츠판
+
+[땅집고](https://realty.chosun.com/) [BEMIL 군사세계](https://bemil.chosun.com/) [헬스조선](https://health.chosun.com/) [IT조선](https://it.chosun.com/) [조선에듀](http://edu.chosun.com/) [어린이조선일보](https://www.chosun.com/kid/) [산&트래블](https://san.chosun.com/) [이코노미조선](http://economy.chosun.com/) [신문은 선생님](http://newsteacher.chosun.com/) [THE BOUTIQUE](https://boutique.chosun.com/) [행복플러스](https://www.chosun.com/tag/seoulplus/) [주간조선](http://weekly.chosun.com/) [여성조선](http://woman.chosun.com/) [월간조선](http://monthly.chosun.com/) [민학수 올댓골프](http://allthatgolf.chosun.com/) [Topclass](http://topclass.chosun.com/) [Life&Learning](https://lifenlearning.chosun.com/)
+
+[조선일보 로고](https://www.chosun.com/)
+
+[로그인](https://www.chosun.com/subscribe/signin/)
+
+- * * *
+
+- * * *
+
+
+* * *
+
+[English](https://www.chosun.com/english/)
+
+[日本語](https://www.chosunonline.com/)
+
+[中文](https://cnnews.chosun.com/)
+
+검색
+
+[조선경제](https://www.chosun.com/economy/) [테크](https://www.chosun.com/economy/tech_it/)
+
+# 카톡 선물하기 전년보다 줄어든 하루 '54만 건'…올해 1위는?
+
+[최아리 기자](https://www.chosun.com/people/choi-ari/)
+
+입력 2025.12.25. 13:48업데이트 2025.12.25. 22:08
+
+0
+
+카카오 CI
+
+올 들어 카카오톡 선물하기를 통해 2억개 가까운 선물이 오갔다. 다만 하루 평균 선물 건수는 작년에 비해 소폭 줄었다.
+
+25일 카카오가 올해 1월 1일~12월 17일 카카오톡 선물하기 이용 데이터를 분석한 결과, 선물하기 전체 이용 횟수는 1억8950만건으로 집계됐다. 전체 일수로 나누면 하루 평균 약 54만개 선물이 오간 셈이다. 이는 앞서 비슷한 시기(2023년 12월~2024년 11월) 하루 평균 오간 선물이 60만건이었던 것에 비해 줄어든 것이다. 카카오 커머스 거래액은 올해 1분기(1~3월) 전년 동기 대비 12%, 2분기(4~6월) 10% 늘었으나, 3분기(7~9월)에는 0.1% 줄었다.
+
+최고 인기 선물 교환권은 작년에 이어 올해도 스타벅스 상품권이 꼽혔다. 2위는 배달의 민족 상품권이었다. 배달의 민족 상품권이 2위에 오른 건 올해가 처음이다.
+
+‘자기 구매 톱 10’으로는 디올 뷰티(1위), 프라다 뷰티(6위)와 바이레도, 르라보 같은 고급 뷰티·니치 향수 브랜드가 상위권에 올라 ‘스몰 럭셔리’ 소비 흐름을 보였다. 앞서 카카오는 지난 3분기 실적 발표 후 콘퍼런스콜에서 “자기 구매 거래액 고성장이 유지되면서 4분기는 3분기보다 (커머스) 매출 성장률이 개선될 것”이라고 밝혔다.
+
+한 해 동안 선물하기를 통해 가장 많은 선물이 오간 날은 작년에 이어 올해도 ‘빼빼로데이’다. 이어 밸런타인데이, 스승의 날, 화이트데이, 대학수학능력시험 하루 전(D-1) 순이었다.
+
+[영문 기사 보기 (View English Article)](https://www.chosun.com/english/industry-en/2025/12/25/KM6HU7GZUNEFPBBAMYP2BYQTZQ/)
+
+[카카오톡](https://www.chosun.com/nsearch/?query=%EC%B9%B4%EC%B9%B4%EC%98%A4%ED%86%A1&siteid=&sort=1&date_period=all&writer=&field=&emd_word=&expt_word=&opt_chk=false&app_check=0&website=www,chosun) [선물하기](https://www.chosun.com/nsearch/?query=%EC%84%A0%EB%AC%BC%ED%95%98%EA%B8%B0&siteid=&sort=1&date_period=all&writer=&field=&emd_word=&expt_word=&opt_chk=false&app_check=0&website=www,chosun)
+
+관련 기사
+
+[크리스마스에 케이크 대신
+
+===== etnews (15860 chars) =====
+# [![](https://img.etnews.com/2024/etnews/images/logo_etnews.svg)](https://www.etnews.com/ "전자신문")
+
+[로그인](https://member.etnews.com/member/login.html?return_url=https://www.etnews.com) [회원가입](https://member.etnews.com/member/join_index.html)
+
+# [![](https://img.etnews.com/2024/etnews/images/logo_et.svg)](https://www.etnews.com/ "전자신문")
+
+- [SW](https://www.etnews.com/news/section.html?id1=04)
+- [IT](https://www.etnews.com/news/section.html?id1=03)
+- [경제](https://www.etnews.com/news/section.html?id1=02)
+- [전자](https://www.etnews.com/news/section.html?id1=06)
+- [모빌리티](https://www.etnews.com/news/section.html?id1=17)
+- [플랫폼/유통](https://www.etnews.com/news/section.html?id1=60)
+- [과학](https://www.etnews.com/news/section.html?id1=20)
+- [정치](https://www.etnews.com/news/section.html?id1=22)
+- [오피니언](https://www.etnews.com/news/opinion.html)
+- [![](https://img.etnews.com/2024/junior/images/logo_jr_menu.svg)](https://jr.etnews.com/)
+
+![검색창 열기](https://img.etnews.com/2024/etnews/images/search.svg)![전체 메뉴 닫기](https://img.etnews.com/2024/etnews/images/remove.svg)
+
+![전체 메뉴 열기](https://img.etnews.com/2024/etnews/images/reorder.svg)![전체 메뉴 닫기](https://img.etnews.com/2024/etnews/images/remove.svg)
+
+- [뉴스](https://news.etnews.com/)
+- [속보](https://www.etnews.com/news/section.html)
+- [SW](https://www.etnews.com/news/section.html?id1=04)
+- [IT](https://www.etnews.com/news/section.html?id1=03)
+- [경제](https://www.etnews.com/news/section.html?id1=02)
+- [전자](https://www.etnews.com/news/section.html?id1=06)
+- [모빌리티](https://www.etnews.com/news/section.html?id1=17)
+- [플랫폼/유통](https://www.etnews.com/news/section.html?id1=60)
+- [과학](https://www.etnews.com/news/section.html?id1=20)
+
+- [정치](https://www.etnews.com/news/section.html?id1=22)
+- [오피니언](https://www.etnews.com/news/opinion.html)
+- [국제](https://www.etnews.com/news/section.html?id1=12)
+- [전국](https://www.etnews.com/news/section.html?id1=25)
+- [스포츠](https://www.etnews.com/news/section.html?id1=15)
+- [특집](https://www.etnews.com/news/series.html?id=1)
+- [연재](https://www.etnews.com/news/series.html?id=3)
+
+- 라이프
+- [연예](https://www.etnews.com/news/section.html?id1=09&id2=091)
+- [포토](https://www.etnews.com/news/section.html?id1=09&id2=996)
+- [공연전시](https://www.etnews.com/news/section.html?id1=09&id2=096)
+- [생활문화](https://www.etnews.com/news/section.html?id1=09&id2=992)
+- [여행/레저](https://www.etnews.com/news/section.html?id1=09&id2=093)
+
+- 비주얼IT
+- [이슈플러스](https://www.etnews.com/news/issue_analysis.html)
+- [AI 스튜디오](https://www.etnews.com/news/aistudio.html)
+- [Hot 영상](https://www.etnews.com/news/etstudio.html)
+- [뷰포인트](https://www.etnews.com/news/photonews.html)
+- [인포그래픽](https://www.etnews.com/stats/list_stats.html)
+
+- 부가서비스
+- [Conference](https://conference.etnews.com/)
+- [allshowTV](https://www.allshowtv.com/)
+- [시사용어](https://www.etnews.com/ict)
+- [PDF서비스](https://pdf.etnews.com/)
+
+- 서비스안내
+- [신문구독신청](https://info.etnews.com/sub_2_1.html "새창으로")
+- [콘텐츠구매](https://info.etnews.com/sub_2_2.html)
+- [초판서비스](http://leadersedition.e
+
+===== kakao_ranking (15330 chars) =====
+[본문 바로가기](https://www.kakaocorp.com/page/detail/11905#mainContent) [메뉴 바로가기](https://www.kakaocorp.com/page/detail/11905#gnbContentPC)
+
+# [KaKao](https://www.kakaocorp.com/page)
+
+## 메인메뉴
+
+- 소개
+
+
+
+  - [카카오 문화](https://www.kakaocorp.com/page/about/culture)
+  - [카카오그룹](https://www.kakaocorp.com/page/about/subsidiaryCompany)
+  - [연혁](https://www.kakaocorp.com/page/about/milestones)
+
+[![](https://t1.kakaocdn.net/thumb/C317x178.fwebp.q100/?fname=https%3A%2F%2Ft1.kakaocdn.net%2Fkakaocorp%2Fkakaocorp%2Fservice%2Fgnb%2Fgnb_kakaoCulture.png)\\
+![](https://t1.kakaocdn.net/kakaocorp/kakaocorp/admin/category/06c15fc0019400001.png)카카오 문화 **사람을 이해하는 기술로**\\
+\\
+**필요한 미래를 더 가깝게**](https://www.kakaocorp.com/page/about/culture)
+
+[![](<Base64-Image-Removed>)\\
+![](<Base64-Image-Removed>)카카오그룹 **카카오가 만든 더 나은 세상**](https://www.kakaocorp.com/page/about/subsidiaryCompany)
+
+[![](<Base64-Image-Removed>)\\
+![](<Base64-Image-Removed>)연혁 **카카오가 걸어온 길**](https://www.kakaocorp.com/page/about/milestones)
+
+전체 슬라이드 3 중 1번째 슬라이드
+
+  - 전체 슬라이드 3 중 1번째 슬라이드
+  - 전체 슬라이드 3 중 2번째 슬라이드
+  - 전체 슬라이드 3 중 3번째 슬라이드
+
+- 기술과 서비스
+
+
+
+  - _기술_
+    - [카카오 AI](https://www.kakaocorp.com/page/service/tech/ai)
+    - [카카오테크](https://www.kakaocorp.com/page/service/tech?tab=kakao_tech_intro)
+    - [기술 플랫폼](https://www.kakaocorp.com/page/service/tech?tab=tech_platform)
+    - [기술 서비스](https://www.kakaocorp.com/page/service/tech?tab=tech_service)
+    - [기술 콘텐츠](https://www.kakaocorp.com/page/service/tech?tab=tech_contents)
+    - [기술 이벤트](https://www.kakaocorp.com/page/service/tech?tab=tech_event)
+    - [if(kakao)](https://www.kakaocorp.com/page/service/tech?tab=ifkakao)
+  - _서비스_
+    - [커뮤니케이션](https://www.kakaocorp.com/page/service/service?tab=communication)
+    - [일상 편의](https://www.kakaocorp.com/page/service/service?tab=lifestyle)
+    - [비즈니스](https://www.kakaocorp.com/page/service/service?tab=business)
+    - [쇼핑](https://www.kakaocorp.com/page/service/service?tab=Shopping)
+    - [엔터테인먼트](https://www.kakaocorp.com/page/service/service?tab=entertainment)
+    - [소셜임팩트](https://www.kakaocorp.com/page/service/service?tab=socal_impact)
+
+[![](https://t1.kakaocdn.net/thumb/C317x178.fwebp.q100/?fname=https%3A%2F%2Ft1.kakaocdn.net%2Fkakaocorp%2Fkakaocorp%2Fadmin%2Fservice%2F6ffc0b76019900001.jpg)\\
+![](https://t1.kakaocdn.net/kakaocorp/kakaocorp/admin/65659472017800001.png)커뮤니케이션 **쓰는이에 집중. 쓰기좋게 맞춤.**\\
+\\
+**카카오톡**](https://www.kakaocorp.com/page/detail/11711)
+
+전체 슬라이드 1 중 1번째 슬라이드
+
+- 약속과 책임
+
+
+
+  - [ESG 보고서](https://www.kakaocorp.com/page/responsible/esg)
+  - [프로젝트 단골](https://www.kakaocorp.com/page/responsible/dangol)
+  - [액티브그린](https://www.kakaocorp.com/page/responsible/activegreen)
+  - [디지털 책임](https://www.kakaocorp.com/page/responsible/policy)
+  - [사회경제적 가치](https://www.kakaocorp.com/page/responsible/socialValue)
+
+[![](https://t1.kakaocdn.net/thumb/C317x178.fwebp.q100/?fname=https%3A%2F%2Ft1.kakaocdn.net%2Fkakaocorp%2Fkakaocorp%2Fservice%2Fgnb%2Fgnb_esg_2025.jpg)\\
+![](https://t1.kakaocdn.net/kakaocorp/kakaoco
+
+===== chlngers (3516 chars) =====
+[![challengers](https://success.chlngers.com/assets/images/logo-challengers.svg?v=e5767aea74)](https://biz-challengers.com/)
+
+[홈](https://biz-challengers.com/) [자주 묻는 질문](https://biz-challengers.com/FAQ) [고객사례](https://success.chlngers.com/) [채용](https://whitecube.ninehire.site/)
+
+[문의하기](https://chlngers.com/contact?form_type=CHLNGERS_MARKETING_CONSULTING&utm_content=top&utm_source=success_organic) [광고소개서 받기](https://chlngers.com/contact?form_type=ALL_ADS_INTRODUCTION&utm_content=top&utm_source=success_organic)
+
+인사이트카카오트렌드 리포트
+
+# 카카오톡 선물하기 소비자 분석 리포트 2025: 구매 경험과 이용 패턴
+
+카카오톡 선물하기의 핵심 소비자는 **30대** 이며, 특히 **여성 20·30대가 두드러진 이용 패턴** 을 보이고 있습니다. 전체 응답자의 절반 이상이 최근 1개월 내 구매 경험을 보유했으며, 여성 20·30대의 경우 그 비율이 **70% 이상** 으로 가장 높게 나타났습니다.
+
+이는 카카오톡 선물하기가 여성 소비자들에게 일상적인 쇼핑 채널로 자리잡았음을 보여줍니다.
+
+카카오톡 선물하기에서의 성장을 목표하고 있다면, 리포트를 확인해 보세요!
+
+> "카카오톡 선물하기 입점은 했는데.. 매출은 어떻게 성장시킬 수 있을까?"
+>
+> "카카오톡 선물하기 단독 상품과 가격 전략, 어떻게 짜야할까?"
+
+💡
+
+이번 조사는 **카카오톡 선물하기 이용 경험이 있는 소비자 512명을 대상으로 진행** 되었으며, 리포트에는 아래 내용이 포함되어 있습니다.
+
+• 카카오톡 선물하기 구매 경험
+
+• 채널 이용 패턴과 방문 동기
+
+• 주요 구매 카테고리와 금액대
+
+• 채널 내 주요 탐색 페이지
+
+• 탐색과 구매 전환의 핵심 요인
+
+• 채널 이용 만족도 및 만족 요인
+
+[리포트 보기](https://tally.so/r/wvkOr4?utm_content=kakao_gift_report_top_btn&ref=success.chlngers.com&utm_source=success_organic)
+
+### 리포트 미리보기 👀
+
+일부 장표를 공개합니다. 자세한 정보 및 더 많은 내용은 리포트를 다운 받으시면 확인할 수 있습니다.
+
+![](https://success.chlngers.com/content/images/2025/09/Frame-427328831-2.png)![](https://success.chlngers.com/content/images/2025/09/Frame-427328832-2.png)![](https://success.chlngers.com/content/images/2025/09/Frame-427328833-1.png)
+
+* * *
+
+### **카카오톡 선물하기 마케팅이 고민이신가요?**
+
+> 커머스 채널 마케팅은 **채널별 소비자 구매 패턴과 노출 구조에 맞춘 전략** 이 필요합니다.
+
+### 함께 보면 좋은 글👀
+
+- [식품 마케팅 어떻게 성공할까? 카카오톡 선물하기, 톡딜, 올리브영 사례 모음](https://success.chlngers.com/food_success/?utm_source=success_organic)
+
+💡
+
+챌린저스는 실제 성과로 연결되는 마케팅 전략을 제공합니다.
+
+집행 사례 및 자세한 프로세스가 궁금하시다면 문의주세요! :)
+
+[챌린저스 마케팅 문의하기 →](https://chlngers.com/contact?form_type=CHLNGERS_MARKETING_CONSULTING&utm_content=kakao_gift_report_inquiry&ref=success.chlngers.com&utm_source=success_organic)
+
+[리포트 보기](https://tally.so/r/wvkOr4?utm_content=kakao_gift_report_bottom_btn&ref=success.chlngers.com&utm_source=success_organic)
+
+← 목록으로 돌아가기
+
+더 많은 카카오 인사이트 글을
+
+확인해 보세요.
+
+[![카카오 톡딜, 성과를 만드는 운영 전략 3가지](https://success.chlngers.com/content/images/size/w600/2025/04/----------------1.jpg)](https://success.chlngers.com/insight/talkdeal_insight/)
+
+[카카오 톡딜, 성과를 만드는 운영 전략 3가지\\
+\\
+\\
+2025-04-23\\
+\\
+인사이트카카오카카오 톡딜마케팅추천](https://success.chlngers.com/insight/talkdeal_insight/)
+
+(주)화이트큐브
+
+copyright 2026. whitecube. All rights reserved.
+
+서울시 강남구 테헤란로 427 위워크 선릉2호점 \| 02-2039-2939
+
+사업자등록번호: 816-81-01359
+
+통신판매업신고: 2018-서울강남-03646
+
+대표: 최혁준 \| 개인정보책임자: 최혁준
+
+[채용](https://whitecube.ninehire.site/)
+
+광고문의 : [collabo\_cell@whitecube.co.kr](mailto:collabo_cell@whitecube.co.kr)
+
+챌린저스 앱 다운로드
+
+[![](https://success.chlngers.com/assets/images/logo-apple.svg?v=e5767aea74)App Store](https://apps.apple.com/kr/app/%EC%B1%8C%EB%A6%B0%EC%A0%80%EC%8A%A4-%EB%B7%B0%ED%8B%B0-%EB%93%9D%ED%85
+
