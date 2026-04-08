@@ -32,6 +32,13 @@ RFM 세그멘테이션 + LTV 코호트 + Viral Loop 분석 → CRM 캠페인 전
 
 ## 현재 진행 상태
 - [x] PLAN.md 작성 완료 (스키마 + 분석 Phase + KPI 체계)
-- [ ] generate_data.py 작성
-- [ ] BigQuery 업로드
-- [ ] 분석 노트북 작성 (Phase 1~5)
+- [x] generate_data.py 작성 (50K 유저, ~200K 주문, 시즌 이벤트 반영)
+- [x] BigQuery 업로드 (`ds-ysy.kakao_gift` 데이터셋, upload_to_bq.py)
+- [x] 분석 노트북 작성 완료 (Phase 1~5, selfmade/analysis/*.ipynb)
+  - [x] Phase 1: EDA & 시즌 분석 (`01_eda_seasonal.ipynb`)
+  - [x] Phase 2: RFM 세그멘테이션 — 9 segments, Champions 8% → GMV 44% (`02_rfm_segmentation.ipynb`)
+  - [x] Phase 3: LTV 코호트 — M+11 LTV ₩203,169, 시즌=비시즌 LTV 동등 검증 (`03_ltv_cohort.ipynb`)
+  - [x] Phase 4: Viral Loop — K-factor 1.559, 44.1% 인과 전환율 (`04_viral_loop.ipynb`)
+  - [x] Phase 5: CRM 전략 — A/B 테스트 설계, ROAS 137배 시뮬레이션 (`05_crm_strategy.ipynb`)
+- [x] PPT 보고서 작성 (`kakao_gift_analysis_selfmade.pptx`)
+- [x] Phase 2~5 면접 대비 Notion Q&A 업데이트 완료 (2026-04-09)

@@ -91,19 +91,38 @@ Reciprocity:
 
 ---
 
-### [LAYER 5] CRM 캠페인 분석
+### [LAYER 5] CRM 캠페인 분석 (v2 — 피드백 반영)
 
-**판정: PASS**
+**판정: PASS (개선)**
 
-ROAS 계산:
-- 공식: (Avg_M × CVR) / 15원 ✓
-- Champions ROAS: 1,665x ✓
-- 비용 가정 명시됨 (15원/건) ✓
+ROAS 계산 (v2 수정):
+- 공식: (Avg_M × CVR × K-factor) / 비용 ✓
+- K-factor 수정: 3.948 → 1.559 (바이럴 전환 유저 기준) ✓
+- Champions ROAS: 2,595x (K-factor 바이럴 승수 포함) ✓
+- 비용 가정 명시 + 감도분석 10/15/20원 ✓
 
 캠페인 성과:
-- Open Rate: 53.7% (양호)
+- Open Rate: 53.7%
 - Click Rate: 5.8%
 - Purchase CVR: 0.53%
+
+A/B 검정 (신규):
+- Power Analysis: 필요 8,158명 / 실제 77,109명 - 충족 ✓
+- Chi-square + Holm-Bonferroni 보정 적용 ✓
+- CTR: ranking 15.16% > curation 5.65% (p<0.0001) ✓
+- CVR: curation 12.73% > ranking 4.23% (p<0.0001) ✓
+- 결론: 목적에 따라 메시지 전략 분리 운영 ✓
+
+Segment × Message 교차 분석 (신규):
+- discount 메시지 전 세그먼트 최고 CVR ✓
+- need_attention + ranking 조합 CVR 최저 (0.26%) 확인 ✓
+
+Phase 4 연결 (신규):
+- K-factor 1.559 ROAS 시뮬레이션 반영 ✓
+- Golden Time 30일 리마인더 타이밍 설계 ✓
+- Pay-it-forward 카피 전략 반영 ✓
+- Self-gift → 타인 전환 전략 추가 ✓
+- 장기 미전환자 63.2% Pepero Day D-7 캠페인 ✓
 
 ---
 
@@ -121,9 +140,10 @@ ROAS 계산:
 
 ## 권장사항
 
-1. **즉시:** 현재 분석 그대로 배포 가능
+1. **즉시:** 현재 분석 그대로 배포 가능 (Layer 5 v2 포함)
 2. **단기:** STL period=30으로 재분석 검토
 3. **장기:** 분기별 K-factor 모니터링 자동화
+4. **Layer 5 v2 추가 권장:** discount 메시지 타입의 높은 CVR을 검증하는 실제 A/B 실험 설계 권장 (현재는 관측 데이터 기반)
 
 ---
 

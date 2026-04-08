@@ -856,6 +856,166 @@ sns.histplot(days_dist, bins=30)
 # 중앙값: X일 → "대부분의 전환은 수신 후 Y일 이내 발생"
 ```
 
+**4-6. 방향성 상호성 심층 분석 (Directed Reciprocity)**
+
+> "보낸 사람에게 되돌려주는가(부채감 해소형), 아니면 다른 사람에게 전파하는가(감사 확산형)?"
+> Facebook(pay-it-forward 강함) vs KakaoTalk(직접 상호성 강함) 충돌 가설을 실데이터로 검증.
+
+**가설 정의**
+
+| 번호 | 가설 | 근거 |
+|---|---|---|
+| H1 | A→B 후 B→A로 되돌아오는 비율이 일반 발신 전환율보다 높다 | Leider et al. 2009 |
+| H2 | 카카오에서 직접 상호성(부채감 해소형, A→B→A)이 pay-it-forward(감사 확산형, B→C)보다 강하다 | Kim & Lee 2025 vs Kizilcec 2018 |
+| H3 | 양방향 교환 페어의 AOV가 단방향 페어보다 높다 | Leider et al. 2009 (+52%) |
+| H4 | A→B→A 체인에서 B→A(답례) AOV가 A→B(원래 선물)와 비슷하거나 높다 | Stauss 2023 가격 대칭성 |
+
+**Step 1. 방향성 상호성 쌍(pair) 추출**
+
+```sql
+WITH sent_pairs AS (
+  SELECT
+    o.sender_user_id   AS user_a,
+    r.receiver_user_id AS user_b,
+    o.created_at       AS sent_at,
+    o.total_amount_krw AS sent_amount
+  FROM orders o
+  JOIN gift_receipts r ON o.order_id = r.order_id
+  WHERE o.order_status = 'accepted'
+),
+reciprocal AS (
+  SELECT
+    a.user_a,
+    a.user_b,
+    a.sent_at          AS a_to_b_at,
+    a.sent_amount      AS a_to_b_amount,
+    b.sent_at          AS b_to_a_at,
+    b.sent_amount      AS b_to_a_amount,
+    DATE_DIFF(b.sent_at, a.sent_at, DAY) AS days_to_reciprocate
+  FROM sent_pairs a
+  JOIN sent_pairs b
+    ON a.user_a = b.user_b
+   AND a.user_b = b.user_a
+   AND b.sent_at > a.sent_at
+)
+SELECT * FROM reciprocal
+```
+
+**Step 2. 부채감 해소형 vs 감사 확산형 비율 + AOV 비교 (H2)**
+
+```sql
+WITH receivers_who_sent AS (
+  SELECT
+    r.receiver_user_id              AS user_id,
+    o_recv.sender_user_id           AS original_sender,
+    r2.receiver_user_id             AS new_recipient,
+    o_send.total_amount_krw         AS sent_amount,
+    o_recv.total_amount_krw         AS received_amount
+  FROM gift_receipts r
+  JOIN orders o_recv  ON r.order_id = o_recv.order_id
+  JOIN orders o_send  ON r.receiver_user_id = o_send.sender_user_id
+  JOIN gift_receipts r2 ON o_send.order_id = r2.order_id
+  WHERE r.receipt_status = 'accepted'
+    AND o_send.order_status = 'accepted'
+    AND o_send.created_at > r.accepted_at
+    AND o_send.created_at <= DATE_ADD(r.accepted_at, INTERVAL 90 DAY)
+)
+SELECT
+  COUNTIF(original_sender = new_recipient)                        AS direct_count,      -- 부채감 해소형
+  COUNTIF(original_sender != new_recipient)                       AS forward_count,     -- 감사 확산형
+  SAFE_DIVIDE(COUNTIF(original_sender = new_recipient), COUNT(*)) AS direct_rate,
+  AVG(IF(original_sender = new_recipient, sent_amount, NULL))     AS direct_aov,        -- 부채감 해소형 AOV
+  AVG(IF(original_sender != new_recipient, sent_amount, NULL))    AS forward_aov        -- 감사 확산형 AOV
+FROM receivers_who_sent
+```
+
+**Step 3. 양방향 vs 단방향 AOV 비교 (H3)**
+
+```python
+bilateral_aov  = reciprocal_df['a_to_b_amount'].mean()    # 양방향 페어
+unilateral_aov = unilateral_df['sent_amount'].mean()       # 단방향 페어
+# 기대: bilateral_aov > unilateral_aov (Leider et al. +52%)
+```
+
+**Step 4. 체인 내 단계별 AOV — 답례 선물이 더 비싼가? (H4)**
+
+```python
+aov_a_to_b    = reciprocal_df['a_to_b_amount'].mean()
+aov_b_to_a    = reciprocal_df['b_to_a_amount'].mean()
+amount_ratio  = reciprocal_df['b_to_a_amount'] / reciprocal_df['a_to_b_amount']
+symmetric_rate = (amount_ratio >= 0.9).mean()  # 90% 이상이면 대칭
+```
+
+**Step 5. 가격 스위트 스팟 — 어떤 금액대에서 상호성 반응이 가장 강한가? (Camerer 1988)**
+
+> "선물 가격이 너무 낮거나 너무 높으면 상호성 반응이 약해진다"
+
+```sql
+SELECT
+  CASE
+    WHEN total_amount_krw < 10000                THEN '1만원 미만'
+    WHEN total_amount_krw BETWEEN 10000 AND 29999 THEN '1~3만원'
+    WHEN total_amount_krw BETWEEN 30000 AND 49999 THEN '3~5만원'
+    WHEN total_amount_krw BETWEEN 50000 AND 99999 THEN '5~10만원'
+    ELSE '10만원 이상'
+  END AS price_band,
+  COUNT(*)                                                           AS total_received,
+  COUNTIF(is_reciprocated)                                          AS reciprocated_count,
+  SAFE_DIVIDE(COUNTIF(is_reciprocated), COUNT(*))                   AS reciprocity_rate,
+  AVG(reply_amount_krw)                                             AS reply_aov
+FROM reciprocity_base
+GROUP BY price_band
+ORDER BY MIN(total_amount_krw)
+```
+
+- 시각화: 가격대별 reciprocity_rate 막대 + reply_aov 꺾은선 (이중 Y축)
+- 기대 인사이트: 1~3만원 구간에서 reciprocity_rate 최고점 (스위트 스팟)
+
+**Step 6. 기념일 자연 발생 보답 — 넛지 없이도 보답이 기념일에 몰리는가? (Caplow 1982)**
+
+> "CRM 캠페인 수신 없이도 기념일 전후에 보답 선물이 자연 발생한다"
+
+```python
+holiday_windows = ['11-11', '05-08', '03-14', '02-14', '05-05']  # 빼빼로데이, 어버이날, 화이트데이 등
+
+reciprocal_df['b_to_a_mmdd'] = pd.to_datetime(reciprocal_df['b_to_a_at']).dt.strftime('%m-%d')
+# 보답 발생일이 기념일 ±7일 이내인 비율 vs 일반일 비율 비교
+```
+
+**Step 7. 수신→발신 전환 확률 +56% 검증 (Kizilcec 2018)**
+
+> "선물을 받으면 미래에 선물을 줄 확률이 56% 증가한다"
+
+```sql
+SELECT
+  CASE WHEN total_received_count = 0 THEN 'never_received' ELSE 'received' END AS grp,
+  COUNT(*)                                                                       AS user_count,
+  COUNTIF(total_sent_count > 0)                                                 AS senders,
+  SAFE_DIVIDE(COUNTIF(total_sent_count > 0), COUNT(*))                          AS send_rate
+FROM (
+  SELECT
+    u.user_id,
+    COUNT(DISTINCT r.receipt_id) AS total_received_count,
+    COUNT(DISTINCT o.order_id)   AS total_sent_count
+  FROM users u
+  LEFT JOIN gift_receipts r ON u.user_id = r.receiver_user_id AND r.receipt_status = 'accepted'
+  LEFT JOIN orders o        ON u.user_id = o.sender_user_id   AND o.order_status = 'accepted'
+  GROUP BY u.user_id
+)
+GROUP BY grp
+-- 기대: received 그룹 send_rate / never_received 그룹 send_rate ≈ 1.56
+```
+
+**산출 시각화**
+1. 부채감 해소형 vs 감사 확산형 비율 파이차트 + 타입별 AOV 비교
+2. 양방향 vs 단방향 페어 AOV 막대그래프
+3. 체인 내 A→B / B→A AOV 산점도 (대각선 = 완벽 대칭)
+4. 가격대별 reciprocity_rate + reply_aov 이중 Y축 차트
+5. 기념일 vs 일반일 보답 발생 비율 비교
+6. Control vs Treatment 그룹 send_rate 비교 (Kizilcec 56% 검증)
+
+---
+
 **산출 시각화 목록**
 1. 수신 횟수 vs 전환율 S-curve (단순 집계 + 로지스틱 회귀)
 2. Reciprocity Index 기간별 막대 그래프 (7/14/30/90일)
@@ -1086,11 +1246,27 @@ kakao_gift/
 ## 11. 다음 단계
 
 - [x] 리서치 결과 PLAN.md 반영 (시즌 랭킹, 인구통계, self_gift 트렌드)
-- [ ] `generate_data.py` 작성 (시즌 패턴 + Viral Loop 반영)
-- [ ] BigQuery `kakao_gift` 데이터셋 생성 및 업로드
-- [ ] Phase 1 EDA 노트북 작성
-- [ ] Phase 2 RFM 세그멘테이션 노트북 작성
-- [ ] Phase 3 LTV 코호트 분석 노트북 작성
-- [ ] Phase 4 Viral Loop 분석 노트북 작성
-- [ ] Phase 5 CRM 전략 문서 작성
-- [ ] PPT 보고서 제작
+- [x] `generate_data.py` 작성 (시즌 패턴 + Viral Loop 반영)
+- [x] BigQuery `kakao_gift` 데이터셋 생성 및 업로드
+- [x] Phase 1 EDA 노트북 작성
+- [x] Phase 2 RFM 세그멘테이션 노트북 작성
+- [x] Phase 3 LTV 코호트 분석 노트북 작성
+- [x] Phase 4 Viral Loop 분석 노트북 작성
+  - [x] `selfmade/analysis/04_viral_loop.ipynb` 작성 완료 (로컬 run_phase4.py로 실행)
+  - [x] `selfmade/analysis/phase4_analysis_report.md` 분석 보고서 작성
+  - [x] Notion 메인 페이지 > 프로젝트 과정 > PHASE 4 토글 업데이트 (Section 1~7-5)
+  - [x] Notion 리뷰 페이지 생성 (https://www.notion.so/33be7de1b3048172a6acdd96c49724be)
+  - [x] Section 8 추가 분석 (Viral 전환 트리거: Occasion 계기 가설 검증)
+    - Pearson r=0.849, Chi-square χ²=68.872(p<0.0001), 시즌 집중 47.3%, 장기 미전환 63.2%
+    - 노트북 35셀 / run_phase4.py Section 8 추가 / Notion 메인+리뷰 페이지 업데이트 완료
+- [x] Phase 5 CRM 전략 문서 작성
+  - [x] `selfmade/analysis/05_crm_strategy.py` 실행 완료
+  - [x] 캠페인 퍼널(Open 53.68%, CVR 0.53%), A/B 테스트(χ²=2002.6, p<0.0001)
+  - [x] ROAS 시뮬레이션: Champions 2,595배, 총 GMV ₩6.02억, 감도분석 3 시나리오
+  - [x] Notion 페이지 업데이트 완료 (Phase 1~5 전체)
+  - [x] notion_export/ 폴더 MD 파일 6개 생성 (00_main_overview ~ 05_phase5_crm)
+- [x] PPT 보고서 제작
+  - [x] `kakao_gift_analysis_selfmade.pptx` 생성 (21슬라이드, 16:9)
+  - [x] `kakao_gift_analysis_selfmade_v01.pptx` 생성 (Google Slides 호환)
+  - [x] 구조: INTRO(3) + Phase1(3) + Phase2·3(4) + Phase4(3) + Phase5(5) + CONCLUSION(3)
+  - [x] DESA 대비 개선: K-factor 수정(3.948→1.559), Occasion 슬라이드 신규, A/B χ² 검정, ROAS 감도분석
