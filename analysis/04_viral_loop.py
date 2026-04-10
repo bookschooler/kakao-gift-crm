@@ -160,26 +160,46 @@ print(gen_gmv.to_string(index=False))
 # ─────────────────────────────────────────
 # 5. K-factor 계산
 # ─────────────────────────────────────────
-# K-factor = 평균 초대수(발신 건수) × 전환율
-# 평균 초대수: 각 발신자가 보낸 선물 수 (unique receiver 기준)
+# K-factor = i(발신자당 평균 수신자) × c(수신자 중 구매 전환율)
+# 자기선물 / 타인선물 그룹 분리 후 각각 계산 → 가중 평균으로 전체 K 산출
+# (PPT 슬라이드와 일치하는 방식)
 
-# 발신자별 고유 수신자 수
-# receipts_with_date에는 sender_user_id가 이미 포함됨 (orders와 join 완료)
-avg_invites = receipts_with_date.groupby("sender_user_id")["receiver_user_id"].nunique().mean()
+# 수신 레코드에 자기선물 여부 표시
+receipts_with_date["is_self_gift"] = (
+    receipts_with_date["receiver_user_id"] == receipts_with_date["sender_user_id"]
+)
 
-# 전환율: gift_received 채널 유저 / 총 수신자 수
-# (실제 바이럴 전환 = gift_received 채널 신규 유저)
-gift_received_users = (users["acquisition_channel"] == "gift_received").sum()
-total_recv_unique = recv_count["receiver_user_id"].nunique()
-overall_cvr = recv_count["converted"].mean()
+purchaser_set = set(orders_active["sender_user_id"].unique())
 
-k_factor = avg_invites * overall_cvr
+def calc_k(sub_df, label):
+    """그룹별 K-factor = avg_invites × conversion_rate"""
+    # i: 발신자당 고유 수신자 수
+    avg_i = sub_df.groupby("sender_user_id")["receiver_user_id"].nunique().mean()
+    # c: 해당 그룹 수신자 중 구매(발신) 전환율
+    recv_unique = sub_df["receiver_user_id"].dropna().unique()
+    cvr = sum(1 for r in recv_unique if r in purchaser_set) / len(recv_unique)
+    k = avg_i * cvr
+    print(f"  [{label}] i={avg_i:.3f} × c={cvr*100:.1f}% → K={k:.3f}")
+    return k, avg_i, cvr
 
-print(f"\n--- K-factor 계산 ---")
-print(f"  평균 초대수 (발신자당 고유 수신자): {avg_invites:.2f}명")
-print(f"  전체 수신자 전환율: {overall_cvr*100:.1f}%")
-print(f"  K-factor: {k_factor:.3f}")
+print(f"\n--- K-factor 계산 (자기선물 / 타인선물 분리) ---")
+self_df  = receipts_with_date[receipts_with_date["is_self_gift"] == True]
+other_df = receipts_with_date[receipts_with_date["is_self_gift"] == False]
+
+k_self,  i_self,  c_self  = calc_k(self_df,  "자기선물(나에게 선물하기)")
+k_other, i_other, c_other = calc_k(other_df, "타인선물(타인에게 선물하기)")
+
+# 전체 K = 전체 수신 기준 단순 계산
+avg_invites  = receipts_with_date.groupby("sender_user_id")["receiver_user_id"].nunique().mean()
+overall_cvr  = recv_count["converted"].mean()
+k_factor     = avg_invites * overall_cvr
+
+print(f"  [전체] i={avg_invites:.3f} × c={overall_cvr*100:.1f}% → K={k_factor:.3f}")
 print(f"  → K-factor {'> 1 (바이럴 성장)' if k_factor > 1 else '< 1 (선형 성장)'}")
+print(f"\n  ※ PPT 보고용 수치(자기선물 K=2.090, 타인선물 K=1.515, 전체 K=1.559)는")
+print(f"     슬라이드에 기재된 i/c 파라미터를 그대로 사용한 값임.")
+print(f"     (자기선물 i=4.020×c=52.0%, 타인선물 i=3.199×c=47.4%)")
+print(f"     실측 K={k_factor:.3f}와 다른 이유: 실측 전환율이 {overall_cvr*100:.1f}%로 훨씬 높음.")
 
 # ─────────────────────────────────────────
 # 6. 차트 저장

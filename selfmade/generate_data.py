@@ -538,10 +538,12 @@ def generate_campaigns() -> list:
 # ══════════════════════════════════════════════════════════════════════════════
 
 AB_METRICS = {
-    'curation': {'open_rate': 0.55, 'ctr': 0.06, 'cvr': 0.15, 'block_rate': 0.008},
-    'ranking':  {'open_rate': 0.50, 'ctr': 0.18, 'cvr': 0.04, 'block_rate': 0.015},
-    'discount': {'open_rate': 0.58, 'ctr': 0.14, 'cvr': 0.10, 'block_rate': 0.012},
-    'seasonal': {'open_rate': 0.52, 'ctr': 0.10, 'cvr': 0.08, 'block_rate': 0.010},
+    # 출처: 카카오 공식 발표(Open Rate 60%, CTR 7.8%) + 업계 벤치마크(RESEARCH.md Tier 1)
+    # ctr/cvr은 "오픈한 사람 중" 조건부 확률. 실제 발송→구매 = open × ctr × cvr
+    'curation': {'open_rate': 0.62, 'ctr': 0.10, 'cvr': 0.12, 'block_rate': 0.007},
+    'ranking':  {'open_rate': 0.55, 'ctr': 0.08, 'cvr': 0.04, 'block_rate': 0.012},
+    'discount': {'open_rate': 0.65, 'ctr': 0.14, 'cvr': 0.10, 'block_rate': 0.010},
+    'seasonal': {'open_rate': 0.58, 'ctr': 0.10, 'cvr': 0.07, 'block_rate': 0.009},
 }
 
 

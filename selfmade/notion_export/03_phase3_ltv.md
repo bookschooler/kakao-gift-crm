@@ -62,7 +62,8 @@
 
 ### 캠페인 ROI 계산 기준
 - CAC (Customer Acquisition Cost) 대비 LTV 비율
-- M+11 LTV ₩203,169 기준 → CAC ₩20,000 이하면 10:1 ROI 달성
+- M+11 LTV ₩203,169 기준, 수수료율 20% 적용 이익 LTV ₩40,634
+- LTV:CAC = 3:1 기준 권장 최대 CAC ≈ ₩13,545
 
 ---
 
