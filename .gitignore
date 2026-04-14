@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+
+# 데이터 파일
+*.csv
+
+# 이미지
+*.png
+
+# 내부 작업 파일 (로컬에만 보관)
+selfmade/
+knowledge/
+report/
+.firecrawl/
+DESIGN_REFERENCE.md
+METHODOLOGY_RESEARCH.md
+RESEARCH_SUMMARY.md
+
+# analysis/ 내부 숨길 파일
+analysis/ANALYSIS_RESULTS.md
+analysis/REVIEW_REPORT.md
+analysis/rfm_result.csv
+analysis/charts/
+
+# Office 파일
+*.pptx
+*.xlsx
+*.pdf
+
+# 툴 설정
+.vscode/
+.claude/
